@@ -1,9 +1,5 @@
 // Smooth scrolling via animate()
 $(document).ready(function(){
-  if ($('.g-recaptcha')) {
-    checkReCaptcha()
-  }
-
   $("a").on('click', function(event) {
     if (this.hash && window.location.pathname == "/") {
       event.preventDefault();
@@ -15,8 +11,10 @@ $(document).ready(function(){
       });
     }
   });
+});
 
-  // Navigation change on scroll
+// Navigation change on scroll
+$(document).ready(function(){
   var maxOffset = 300;
   $(window).scroll(function() {
     if ($(window).scrollTop() >= maxOffset) {
@@ -26,7 +24,9 @@ $(document).ready(function(){
       $('.navbar-default').removeClass('navbar-shrink');
     }
   });
+});
 
+$(document).ready(function(){
   var maxOffset = 300;
   if ($(window).scrollTop() >= maxOffset) {
     $('.navbar-default').addClass('navbar-shrink');
@@ -53,7 +53,7 @@ $('form[id=contactForm]').submit(function(){
     $('form[id=contactForm] #error').hide();
     if (jqXHR.status == 200) {
       $('form[id=contactForm] #success').show();
-    }}).fail(function(){
+    }}, 'json').fail(function(){
       $('form[id=contactForm] #success').hide();
       $('form[id=contactForm] #error').hide();
       $('form[id=contactForm] #error').show();
@@ -65,18 +65,3 @@ $('form[id=contactForm]').submit(function(){
 $.validate({
   modules : 'html5, toggleDisabled'
 });
-
-function onContactCaptcha($form) {
-  $('form#contactForm').submit();
-}
-
-function checkReCaptcha() {
-  if (typeof grecaptcha === "undefined") {
-    $('.captcha-error').show();
-    setTimeout(checkReCaptcha, 200);
-  } else {
-    $('.captcha-error').hide();
-    $('.g-recaptcha-filler').hide();
-    $('.g-recaptcha').attr('disabled', true);
-  }
-}
