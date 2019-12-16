@@ -82,7 +82,7 @@
               {{ else if eq .name "page" }}
                 <input type="hidden" name="{{ .name }}" value="{{ $.URL }}"/>
               {{ else }}
-                <input type="hidden" name="{{ .name }}" value="{{ .value }}"/>
+                <input type="hidden" name="{{ .name }}" value="{{ .URL }}"/>
               {{ end }}
             {{ end }}
           </fieldset>
